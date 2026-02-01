@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  trailingSlash: true, // Add this
-  output: "standalone",
+  output: "export", // Enable for FTP deployment
+  trailingSlash: true,
+  reactStrictMode: true,
+  compress: true,
   images: {
     unoptimized: true,
   },
@@ -28,3 +30,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
