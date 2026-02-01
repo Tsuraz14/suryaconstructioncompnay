@@ -14,7 +14,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: "en" | "np" }>;
 }) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 
@@ -41,7 +41,7 @@ type HomePageProps = {
 };
 
 export default async function HomePage({ params }: HomePageProps) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 

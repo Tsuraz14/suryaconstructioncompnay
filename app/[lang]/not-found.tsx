@@ -6,7 +6,7 @@ export default async function NotFound({
 }: {
   params: Promise<{ lang: string }>;
 }) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
 
   const title = locale === "np" ? "पृष्ठ फेला परेन" : "Page not found";

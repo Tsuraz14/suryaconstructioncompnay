@@ -23,7 +23,7 @@ export default async function LangLayout({
   children,
   params,
 }: LangLayoutProps) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale = lang === "np" ? "np" : "en";
   const font = locale === "np" ? devanagari : inter;
 

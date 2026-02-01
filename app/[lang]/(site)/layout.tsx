@@ -11,7 +11,7 @@ export default async function SiteLayout({
   children,
   params,
 }: SiteLayoutProps) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale = lang === "np" ? "np" : "en";
 
   return (

@@ -9,7 +9,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ lang: "en" | "np" }>;
 }) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 
@@ -36,7 +36,7 @@ type ContactPageProps = {
 };
 
 export default async function ContactPage({ params }: ContactPageProps) {
-  const { lang } = await params;
+  const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 
