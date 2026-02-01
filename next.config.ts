@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   trailingSlash: true, // Add this
-  output: "standalone",
+  output: "export", // Enable for FTP deployment
   images: {
     unoptimized: true,
   },
