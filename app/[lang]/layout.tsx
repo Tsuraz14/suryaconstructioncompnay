@@ -1,17 +1,3 @@
-import { Inter, Noto_Sans_Devanagari } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-sans",
-});
-
-const devanagari = Noto_Sans_Devanagari({
-  subsets: ["devanagari"],
-  display: "swap",
-  variable: "--font-sans",
-});
-
 export const dynamicParams = false;
 
 type LangLayoutProps = {
@@ -25,10 +11,11 @@ export default async function LangLayout({
 }: LangLayoutProps) {
   const lang = (await params)?.lang ?? "en";
   const locale = lang === "np" ? "np" : "en";
-  const font = locale === "np" ? devanagari : inter;
 
   return (
-    <div className={`${font.variable} font-sans`}>{children}</div>
+    <div lang={locale} className="font-sans">
+      {children}
+    </div>
   );
 }
 

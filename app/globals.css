@@ -11,6 +11,8 @@
   --border: 220 10% 85%;
   --brand: 33 90% 52%;
   --brand-hover: 30 90% 49%;
+  --font-sans: "Inter", "Noto Sans Devanagari", system-ui, -apple-system,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 .dark {
@@ -21,6 +23,11 @@
   --border: 0 0% 20%;
   --brand: 33 90% 52%;
   --brand-hover: 30 90% 49%;
+}
+
+[lang="np"] {
+  --font-sans: "Noto Sans Devanagari", "Inter", system-ui, -apple-system,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {
