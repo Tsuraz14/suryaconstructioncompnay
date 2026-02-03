@@ -42,121 +42,112 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 
-  const heading =
+  const heroTitle =
     locale === "np"
-      ? "१९७८ देखि अनुभवी निर्माण सेवा"
-      : "Construction Services Delivered Since 1978";
-  const intro =
+      ? "सटीकतासहित प्रदान गरिने निर्माण सेवा"
+      : "Construction Services Delivered with Precision";
+  const heroIntro =
     locale === "np"
-      ? "कडाइका QA/QC, सुरक्षा प्रणाली, र उत्तरदायी साइट व्यवस्थापनसहित समग्र निर्माण तथा पूर्वाधार डेलिभरी।"
-      : "End-to-end construction and infrastructure delivery backed by strict QA/QC, safety systems, and accountable site management.";
+      ? "हामी अनुभवी पेशेवर, आधुनिक उपकरण, र कडा गुणस्तर मापदण्डको समर्थनमा समग्र निर्माण तथा पूर्वाधार सेवाहरू प्रदान गर्छौं।"
+      : "We provide comprehensive construction and infrastructure services supported by experienced professionals, modern equipment, and strict quality standards.";
 
-  const servicesIntro =
-    locale === "np"
-      ? "योजना देखि हस्तान्तरणसम्म अनुशासित कार्यान्वयन—सार्वजनिक तथा निजी क्षेत्रका ग्राहकहरूका लागि।"
-      : "Disciplined execution from planning to handover for public and private sector clients.";
+  const coreServicesTitle =
+    locale === "np" ? "मुख्य सेवाहरू" : "Core Services";
 
-  const serviceItems = [
+  const serviceBlocks = [
     {
-      id: "building",
+      id: "building-construction",
       title: {
         en: "Building Construction",
         np: "भवन निर्माण",
       },
       description: {
-        en: "Hospitals, hotels, schools, and industrial buildings delivered by experienced RCC teams and strict QA/QC.",
-        np: "अस्पताल, होटल, विद्यालय, र औद्योगिक भवन—अनुभवी RCC टोली र कडाइका QA/QC सहित।",
+        en: "Hospitals, hotels, schools, commercial, and industrial buildings delivered with structural precision and safety.",
+        np: "अस्पताल, होटल, विद्यालय, व्यावसायिक तथा औद्योगिक भवनहरू संरचनात्मक सटीकता र सुरक्षासहित निर्माण।",
       },
       bullets: {
         en: [
           "RCC & structural works",
           "Turnkey project delivery",
-          "Residential & commercial buildings",
+          "Residential & institutional buildings",
         ],
         np: [
           "RCC तथा संरचनात्मक काम",
-          "टर्नकी परियोजना वितरण",
-          "आवासीय तथा व्यावसायिक भवन",
+          "टर्नकी परियोजना डेलिभरी",
+          "आवासीय तथा संस्थागत भवन",
         ],
       },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 21h18" />
-          <path d="M7 21V7l5-3 5 3v14" />
-          <path d="M9 21v-6h6v6" />
-        </svg>
-      ),
+      image: "/images/services/building-construction.webp",
+      alt: {
+        en: "Hospital and institutional building construction",
+        np: "अस्पताल तथा संस्थागत भवन निर्माण",
+      },
     },
     {
-      id: "roads",
+      id: "roads-infrastructure",
       title: {
         en: "Roads & Infrastructure",
         np: "सडक तथा पूर्वाधार",
       },
       description: {
-        en: "Road construction and upgrading with terrain-led design, drainage, and safety-led execution.",
-        np: "सडक निर्माण तथा स्तरोन्नति—भू-आकृतिअनुसार डिजाइन, निकास, र सुरक्षा-केन्द्रित कार्यान्वयन।",
+        en: "Road construction and upgrading projects that improve connectivity and durability.",
+        np: "सडक निर्माण तथा स्तरोन्नति परियोजनाहरू जसले पहुँच र दिगोपन बढाउँछन्।",
       },
       bullets: {
         en: [
           "Road upgrading & blacktopping",
-          "Drainage & earthworks",
-          "Urban & rural roads",
+          "Drainage and earthworks",
+          "Urban and rural infrastructure",
         ],
         np: [
           "सडक स्तरोन्नति तथा कालोपत्रे",
           "निकास तथा अर्थवर्क",
-          "शहरी तथा ग्रामीण सडक",
+          "शहरी तथा ग्रामीण पूर्वाधार",
         ],
       },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 21l4-18h10l4 18" />
-          <path d="M12 5v4" />
-          <path d="M12 13v4" />
-        </svg>
-      ),
+      image: "/images/services/roads-infrastructure.webp",
+      alt: {
+        en: "Road upgrading and infrastructure works",
+        np: "सडक स्तरोन्नति तथा पूर्वाधार काम",
+      },
     },
     {
-      id: "bridges",
+      id: "bridges-structures",
       title: {
         en: "Bridges & Civil Structures",
         np: "पुल तथा सिभिल संरचना",
       },
       description: {
-        en: "Durable bridges and civil structures built to approved standards with certified workmanship.",
-        np: "स्वीकृत मापदण्डअनुसार दिगो पुल तथा सिभिल संरचना—प्रमाणित कार्यसम्पादनसहित।",
+        en: "Execution of bridges and complex civil structures meeting engineering and safety standards.",
+        np: "इन्जिनियरिङ र सुरक्षा मापदण्डअनुसार पुल तथा जटिल सिभिल संरचनाहरूको कार्यान्वयन।",
       },
       bullets: {
         en: [
-          "RCC & steel structures",
-          "Foundation and substructure works",
-          "Safety-compliant execution",
+          "RCC and steel structures",
+          "Foundation & substructure works",
+          "Compliance-driven execution",
         ],
         np: [
           "RCC तथा स्टिल संरचना",
-          "फाउन्डेशन र सबस्ट्रक्चर काम",
-          "सुरक्षा मापदण्डअनुसार कार्यान्वयन",
+          "फाउन्डेसन र सबस्ट्रक्चर काम",
+          "अनुपालन-केन्द्रित कार्यान्वयन",
         ],
       },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 18h18" />
-          <path d="M5 18v-3a7 7 0 0 1 14 0v3" />
-          <path d="M8 15v-2" />
-          <path d="M16 15v-2" />
-        </svg>
-      ),
+      image: "/images/services/bridges-structures.webp",
+      alt: {
+        en: "Bridge and civil structure execution",
+        np: "पुल तथा सिभिल संरचना कार्यान्वयन",
+      },
     },
     {
-      id: "hydropower",
+      id: "hydropower-tunnel",
       title: {
         en: "Hydropower & Tunnel Works",
         np: "जलविद्युत तथा टनेल काम",
       },
       description: {
-        en: "Tunnel, intake, and powerhouse civil works with controlled excavation and compliance oversight.",
-        np: "नियन्त्रित उत्खनन र अनुपालन निगरानीसहित टनेल, इन्टेक, र पावरहाउस सिभिल काम।",
+        en: "Civil works for hydropower projects including tunnels, waterways, and powerhouse structures.",
+        np: "जलविद्युत् परियोजनाका लागि टनेल, जलमार्ग, र पावरहाउस संरचनाको सिभिल काम।",
       },
       bullets: {
         en: [
@@ -170,107 +161,76 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
           "पानी वहन संरचनाहरू",
         ],
       },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 20V12a8 8 0 0 1 16 0v8" />
-          <path d="M9 20v-4a3 3 0 0 1 6 0v4" />
-          <path d="M8 10h8" />
-        </svg>
-      ),
+      image: "/images/services/hydropower-tunnel.webp",
+      alt: {
+        en: "Hydropower tunnel civil works",
+        np: "जलविद्युत टनेल सिभिल काम",
+      },
     },
     {
-      id: "maintenance",
+      id: "maintenance-rehab",
       title: {
         en: "Maintenance & Rehabilitation",
         np: "मर्मत तथा पुनःस्थापना",
       },
       description: {
-        en: "Retrofitting and rehabilitation guided by site assessments to extend asset life safely.",
-        np: "साइट मूल्याङ्कनमा आधारित रेट्रोफिटिङ र पुनःस्थापना—संरचनाको आयु सुरक्षित रूपमा बढाउन।",
+        en: "Repair, strengthening, and rehabilitation of existing structures.",
+        np: "विद्यमान संरचनाको मर्मत, सुदृढीकरण, र पुनःस्थापना।",
       },
       bullets: {
         en: [
           "Structural strengthening",
-          "Renovation & repair works",
-          "Safety and compliance upgrades",
+          "Renovation & retrofitting",
+          "Safety upgrades",
         ],
         np: [
           "संरचनात्मक सुदृढीकरण",
-          "नवीकरण तथा मर्मत काम",
-          "सुरक्षा तथा अनुपालन सुधार",
+          "नवीकरण तथा रेट्रोफिटिङ",
+          "सुरक्षा सुधार",
         ],
       },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 6l4 4" />
-          <path d="M7 18l7-7" />
-          <path d="M5 19l-1-4 4 1 10-10-3-3L5 13" />
-        </svg>
-      ),
-    },
-    {
-      id: "management",
-      title: {
-        en: "Project Management & Supervision",
-        np: "परियोजना व्यवस्थापन तथा सुपरभिजन",
+      image: "/images/services/maintenance-rehab.webp",
+      alt: {
+        en: "Structure maintenance and rehabilitation",
+        np: "संरचना मर्मत तथा पुनःस्थापना",
       },
-      description: {
-        en: "Planning, supervision, and QA/QC reporting that keeps schedule, cost, and quality aligned.",
-        np: "तालिका, लागत, र गुणस्तर मिलाउन परियोजना योजना, सुपरभिजन, र QA/QC रिपोर्टिङ।",
-      },
-      bullets: {
-        en: [
-          "Scheduling & coordination",
-          "QA/QC monitoring",
-          "Cost & progress control",
-        ],
-        np: [
-          "तालिकाकरण तथा समन्वय",
-          "QA/QC निगरानी",
-          "लागत तथा प्रगति नियन्त्रण",
-        ],
-      },
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 3h6l1 2h4v16H4V5h4l1-2Z" />
-          <path d="M9 12l2 2 4-4" />
-        </svg>
-      ),
     },
   ];
 
+  const processTitle =
+    locale === "np" ? "हाम्रो निर्माण प्रक्रिया" : "Our Construction Process";
   const processSteps =
     locale === "np"
       ? [
           {
             title: "परामर्श र योजना",
-            body: "परियोजना आवश्यकताहरू, सम्भाव्यता र योजनाबारे बुझाइ।",
+            body: "परियोजना आवश्यकताहरू, सम्भाव्यता, र कार्यान्वयन रणनीति बुझाइ।",
           },
           {
-            title: "डिजाइन र परिचालन",
-            body: "इन्जिनियरिङ समन्वय, स्रोत योजना, र साइट परिचालन।",
+            title: "इन्जिनियरिङ र परिचालन",
+            body: "डिजाइन समन्वय, स्रोत योजना, र साइट परिचालन।",
           },
           {
             title: "कार्यान्वयन र गुणस्तर नियन्त्रण",
-            body: "कडाइका सुरक्षा तथा गुणस्तर जाँचसहित नियन्त्रित कार्यान्वयन।",
+            body: "कडाइका सुरक्षा तथा QA/QC जाँचसहित नियन्त्रित कार्यान्वयन।",
           },
           {
             title: "हस्तान्तरण र समर्थन",
-            body: "दस्तावेजसहित समयमै हस्तान्तरण र पछि आवश्यक सहयोग।",
+            body: "दस्तावेजसहित समयमै हस्तान्तरण र निर्माणपछिको सहयोग।",
           },
         ]
       : [
           {
             title: "Consultation & Planning",
-            body: "Understanding project requirements, feasibility, and planning.",
+            body: "Understanding project requirements, feasibility, and execution strategy.",
           },
           {
-            title: "Design & Mobilization",
-            body: "Engineering coordination, resource planning, and site mobilization.",
+            title: "Engineering & Mobilization",
+            body: "Design coordination, resource planning, and site mobilization.",
           },
           {
             title: "Execution & Quality Control",
-            body: "Controlled execution with strict safety and quality checks.",
+            body: "Controlled construction with strict safety and QA/QC checks.",
           },
           {
             title: "Handover & Support",
@@ -278,43 +238,47 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
           },
         ];
 
-  const whyChoose =
+  const trustTitle =
+    locale === "np" ? "हामी किन विश्वासयोग्य" : "Why Clients Trust Us";
+  const trustReasons =
     locale === "np"
       ? [
           {
-            title: "दशकौँको अनुभव",
-            body: "विभिन्न भूगोल र जटिल परियोजनामा सिद्ध अनुभव।",
+            title: "दशकौँको निर्माण अनुभव",
+            body: "१९७८ देखि सरकारी, स्वास्थ्य, र संस्थागत परियोजनाहरूमा अनुशासित कार्यान्वयन।",
           },
           {
-            title: "बलियो प्राविधिक टोली र उपकरण",
-            body: "प्रशिक्षित इन्जिनियर, साइट टोली, र आधुनिक उपकरण।",
+            title: "दक्ष प्राविधिक टोली र उपकरण",
+            body: "जटिल भू–आकृति र कामको दायरा अनुसार दक्ष इन्जिनियर, साइट टोली, र उपकरण।",
           },
           {
-            title: "संस्थागत परियोजनामा विश्वासिलो ट्र्याक रेकर्ड",
-            body: "स्वास्थ्य, शिक्षा, पूर्वाधार लगायतका परियोजनामा प्रभावकारी डेलिभरी।",
+            title: "प्रमाणित सुरक्षा तथा गुणस्तर प्रणाली",
+            body: "प्रत्येक काममा QA/QC अभ्यास, सुरक्षा प्रोटोकल, र अनुपालन दस्तावेज।",
           },
         ]
       : [
           {
-            title: "Decades of Experience",
-            body: "Proven delivery across diverse terrain and complex scopes.",
+            title: "Decades of Construction Experience",
+            body: "Government, healthcare, and institutional projects delivered with disciplined execution since 1978.",
           },
           {
-            title: "Strong Technical Team & Equipment",
-            body: "Skilled engineers, site teams, and reliable modern equipment.",
+            title: "Skilled Technical Team & Equipment",
+            body: "Skilled engineers, site teams, and equipment matched to complex terrain and scope.",
           },
           {
-            title: "Proven Track Record with Institutions",
-            body: "Trusted delivery for healthcare, education, and infrastructure clients.",
+            title: "Proven Safety & Quality Systems",
+            body: "Audited QA/QC practices, safety protocols, and compliance documentation on every job.",
           },
         ];
 
   const ctaTitle =
-    locale === "np" ? "परियोजना सुरु गर्न चाहनुहुन्छ?" : "Have a project in mind?";
+    locale === "np" ? "निर्माण परियोजना योजना गर्दै हुनुहुन्छ?" : "Planning a construction project?";
   const ctaText =
     locale === "np"
-      ? "परियोजना दायरा र समयरेखा साझा गर्नुहोस्—हाम्रो इन्जिनियर टोलीले छिटो प्रतिक्रिया र स्पष्ट डेलिभरी योजना दिन्छ।"
-      : "Share the scope and timeline—our engineers respond promptly with a clear delivery plan.";
+      ? "गुणस्तर र कार्यान्वयनमा विश्वसनीय निर्माण साझेदारसँग काम गर्नुहोस्।"
+      : "Engage a construction partner trusted for quality and execution.";
+  const ctaButton =
+    locale === "np" ? "हाम्रो टोलीसँग सम्पर्क" : "Contact Our Team";
 
   const breadcrumbs = buildBreadcrumbs(locale, [
     { name: locale === "np" ? "गृहपृष्ठ" : "Home", path: "" },
@@ -324,101 +288,100 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   return (
     <>
       <JsonLd data={breadcrumbs} />
-      <Section align="center">
-          <div className="relative overflow-hidden rounded-xl border border-border bg-card px-6 py-12 md:px-12">
-          <div className="absolute inset-0">
-            <Image
-              src="/images/nivix.webp"
-              alt={
-                locale === "np"
-                  ? "संरचना र उपकरण देखिने सक्रिय निर्माण साइट"
-                  : "Active construction site with structural works and machinery"
-              }
-              fill
-              priority
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/70 to-background/95" />
-          </div>
-          <div className="relative z-10 mx-auto max-w-3xl space-y-6">
-            <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-                {labels.nav.services}
-              </p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl">
-                {heading}
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
-                {intro}
-              </p>
+
+      <section className="py-14 sm:py-16 md:py-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="space-y-6 text-center lg:text-left">
+              <Reveal delay={0}>
+                <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl">
+                  {heroTitle}
+                </h1>
+              </Reveal>
+              <Reveal delay={80}>
+                <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+                  {heroIntro}
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={120} className="group">
+              <div className="relative h-[280px] overflow-hidden rounded-2xl border border-border/70 bg-muted/40 shadow-sm md:h-[360px]">
+                <Image
+                  src="/images/services/overview.webp"
+                  alt={
+                    locale === "np"
+                      ? "सक्रिय निर्माण साइटको सेवा अवलोकन"
+                      : "Service overview at an active construction site"
+                  }
+                  fill
+                  priority
+                  className="object-cover transition duration-700 ease-out motion-safe:translate-y-3 motion-safe:group-[.opacity-100]:translate-y-0"
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-black/10 to-transparent" />
+              </div>
             </Reveal>
           </div>
         </div>
-      </Section>
+      </section>
 
-      <Section
-        eyebrow={locale === "np" ? "मुख्य सेवा" : "Core Services"}
-        title={locale === "np" ? "निर्माण सेवाहरूको गहिराइ" : "Depth of Services"}
-        description={servicesIntro}
-      >
-        <div className="grid gap-6 md:grid-cols-2">
-          {serviceItems.map((service, index) => (
-            <Reveal key={service.id} delay={index * 70}>
-              <article className="card-surface card-hover group h-full p-6">
-                <div className="flex items-start gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/70 bg-muted/60 text-brand transition duration-300 group-hover:scale-105">
-                    <span className="h-6 w-6">{service.icon}</span>
-                  </span>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold leading-tight text-foreground">
-                      {service.title[locale]}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
-                      {service.description[locale]}
-                    </p>
-                  </div>
+      <Section title={coreServicesTitle}>
+        <div className="space-y-10">
+          {serviceBlocks.map((service, index) => (
+            <Reveal key={service.id} delay={index * 80} className="group">
+              <div
+                className={`flex flex-col gap-8 rounded-2xl border border-border/70 bg-card/70 p-6 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg md:p-8 lg:items-center ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                }`}
+              >
+                <div className="relative h-56 w-full overflow-hidden rounded-2xl md:h-64 lg:h-[320px] lg:w-1/2">
+                  <Image
+                    src={service.image}
+                    alt={service.alt[locale]}
+                    fill
+                    className="object-cover transition duration-700 ease-out motion-safe:scale-[1.05] motion-safe:translate-y-3 motion-safe:group-[.opacity-100]:scale-100 motion-safe:group-[.opacity-100]:translate-y-0"
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-black/10 to-transparent" />
                 </div>
-                <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                  {service.bullets[locale].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-brand" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+                <div className="space-y-4 lg:w-1/2">
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {service.title[locale]}
+                  </h3>
+                  <p className="text-base leading-relaxed text-foreground/80">
+                    {service.description[locale]}
+                  </p>
+                  <ul className="space-y-2 text-sm text-foreground/80 md:text-base">
+                    {service.bullets[locale].map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="mt-2 h-2 w-2 rounded-full bg-brand" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      <Section
-        eyebrow={locale === "np" ? "प्रक्रिया" : "Process"}
-        title={
-          locale === "np" ? "हाम्रो निर्माण प्रक्रिया" : "Our Construction Process"
-        }
-        description={
-          locale === "np"
-            ? "समयमै डेलिभरीका लागि व्यवस्थित चरणहरू र स्पष्ट जिम्मेवारी।"
-            : "Structured phases with clear responsibility for timely delivery."
-        }
-      >
-        <div className="relative md:pt-8">
-          <div className="absolute left-4 top-6 bottom-6 w-px bg-border md:hidden" />
-          <div className="absolute left-0 right-0 top-4 hidden h-px bg-border md:block" />
+      <Section title={processTitle}>
+        <div className="relative">
+          <Reveal className="group absolute inset-x-6 top-6 hidden md:block">
+            <div className="h-px origin-left scale-x-0 bg-border/80 transition duration-700 ease-out motion-safe:group-[.opacity-100]:scale-x-100" />
+          </Reveal>
+          <Reveal className="group absolute bottom-0 left-4 top-2 w-px md:hidden">
+            <div className="h-full origin-top scale-y-0 bg-border/80 transition duration-700 ease-out motion-safe:group-[.opacity-100]:scale-y-100" />
+          </Reveal>
           <div className="grid gap-6 md:grid-cols-4">
             {processSteps.map((step, index) => (
               <Reveal key={step.title} delay={index * 80}>
-                <div className="relative pl-10 md:pl-0">
-                  <span className="absolute left-4 top-6 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border border-border bg-background text-xs font-semibold text-brand md:left-1/2 md:top-4 md:-translate-x-1/2 md:-translate-y-1/2">
+                <div className="relative pl-12 md:pl-0">
+                  <span className="absolute left-4 top-2 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-sm font-semibold text-brand md:left-1/2 md:top-0 md:-translate-x-1/2 md:-translate-y-1/2">
                     {index + 1}
                   </span>
-                  <div className="card-surface p-6 md:pt-10">
+                  <div className="rounded-2xl border border-border/70 bg-card/70 p-5 pt-8 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg md:pt-10">
                     <h3 className="text-base font-semibold text-foreground">
                       {step.title}
                     </h3>
@@ -433,25 +396,25 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
         </div>
       </Section>
 
-      <Section
-        eyebrow={locale === "np" ? "हामी किन" : "Why Us"}
-        title={
-          locale === "np"
-            ? "सुरक्षा, गुणस्तर, र अनुभवमा आधारित सेवा"
-            : "Service Delivery Built on Safety, Quality, and Experience"
-        }
-        description={
-          locale === "np"
-            ? "परियोजनालाई समय, बजेट, र गुणस्तरमा मिलाउने विश्वसनीय अभ्यास।"
-            : "Reliable practices that align schedule, budget, and quality."
-        }
-      >
+      <Section title={trustTitle}>
         <div className="grid gap-6 md:grid-cols-3">
-          {whyChoose.map((item, index) => (
+          {trustReasons.map((item, index) => (
             <Reveal key={item.title} delay={index * 80}>
-              <div className="card-surface card-hover p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand">
-                  <span className="h-2 w-2 rounded-full bg-brand" />
+              <div className="rounded-2xl border border-border/70 bg-card/70 p-6 shadow-sm">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 3l8 4v6c0 4-3 7-8 8-5-1-8-4-8-8V7l8-4Z" />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
                 </span>
                 <h3 className="mt-4 text-base font-semibold text-foreground">
                   {item.title}
@@ -478,9 +441,9 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
             </div>
             <Link
               href={`/${locale}/contact`}
-              className="btn-primary px-7 py-3"
+              className="btn-primary px-7 py-3 transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-0"
             >
-              {locale === "np" ? "हाम्रो टोलीसँग सम्पर्क" : "Contact Our Team"}
+              {ctaButton}
             </Link>
           </div>
         </Reveal>

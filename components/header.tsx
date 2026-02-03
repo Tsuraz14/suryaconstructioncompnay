@@ -24,10 +24,55 @@ export default function Header({ lang }: HeaderProps) {
   const labels = t(lang);
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const [reduceMotion, setReduceMotion] = React.useState(false);
 
   React.useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
+
+  React.useEffect(() => {
+    setMounted(true);
+    if (typeof window === "undefined") return;
+
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(media.matches);
+    update();
+
+    if (media.addEventListener) {
+      media.addEventListener("change", update);
+      return () => media.removeEventListener("change", update);
+    }
+
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let raf = 0;
+    const update = () => {
+      setScrolled(window.scrollY > 12);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        update();
+        raf = 0;
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) {
+        window.cancelAnimationFrame(raf);
+      }
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!menuOpen) return;
@@ -45,35 +90,49 @@ export default function Header({ lang }: HeaderProps) {
   const normalizedPath = (pathname || "/").replace(/\/$/, "") || "/";
   const buildHref = (href: string) => (href ? `/${lang}${href}` : `/${lang}`);
   const isActive = (href: string) => normalizedPath === href;
+  const entranceClass = reduceMotion
+    ? "opacity-100 translate-y-0"
+    : mounted
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 -translate-y-2";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 border-b border-border/60 bg-background/70 ${scrolled
+          ? "backdrop-blur-lg shadow-sm"
+          : "shadow-none"
+        } ${reduceMotion ? "" : "transition-all duration-300 ease-out"} ${entranceClass}`}
+    >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 py-3 md:py-4">
+        <div
+          className={`flex items-center justify-between gap-4 ${scrolled ? "py-2.5 md:py-3" : "py-4 md:py-5"
+            } ${reduceMotion ? "" : "transition-all duration-300 ease-out"}`}
+        >
           <Link href={`/${lang}`} className="flex items-center gap-3">
             <div className="rounded-full border border-border bg-card p-1">
               <Image
                 src="/logo/logo.webp"
                 alt={labels.companyName}
-                width={32}
-                height={32}
-                sizes="32px"
+                width={48}
+                height={48}
+                sizes="(max-width: 768px) 40px, 48px"
+                className="h-10 w-auto md:h-12"
                 priority
                 placeholder="blur"
                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iMTYiIGZpbGw9IiNGMzhBMTUiLz48L3N2Zz4="
               />
             </div>
             <div className="leading-tight">
-              <span className="block text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
+              <span className="block text-sm font-semibold text-foreground md:text-base">
                 {labels.companyName}
               </span>
-              <span className="block text-xs text-foreground/70">
+              <span className="block text-xs uppercase tracking-[0.22em] text-foreground/60">
                 {labels.companyTagline}
               </span>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-7 text-sm font-medium tracking-[0.08em] md:flex">
             {navItems.map((item) => {
               const href = buildHref(item.href);
               const active = isActive(href);
@@ -83,8 +142,8 @@ export default function Header({ lang }: HeaderProps) {
                   key={item.key}
                   href={href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative whitespace-nowrap text-sm font-medium no-underline transition-colors hover:no-underline after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-brand after:transition-transform after:duration-200 after:content-[''] ${active
-                      ? "text-brand after:scale-x-100"
+                  className={`relative whitespace-nowrap text-[13px] font-medium no-underline transition-colors hover:no-underline after:absolute after:-bottom-2 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-brand after:content-[''] motion-safe:after:transition-transform motion-safe:after:duration-300 motion-reduce:after:transition-none ${active
+                      ? "text-foreground after:scale-x-100"
                       : "text-foreground/70 hover:text-foreground hover:after:scale-x-100"
                     }`}
                 >
@@ -97,7 +156,7 @@ export default function Header({ lang }: HeaderProps) {
           <div className="hidden items-center gap-2 md:flex">
             <Link
               href={buildHref("/contact")}
-              className="btn-primary px-4 py-2 text-sm"
+              className="btn-primary !rounded-lg px-4 py-2 text-sm"
             >
               {labels.cta}
             </Link>
@@ -127,40 +186,48 @@ export default function Header({ lang }: HeaderProps) {
         </div>
       </div>
 
-      <div className={`md:hidden ${menuOpen ? "block" : "hidden"}`}>
+      <div className="md:hidden">
         <div className="mx-auto w-full max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
           <div
             id="mobile-nav"
-            className="card-surface p-4"
+            className={`origin-top overflow-hidden ${menuOpen
+                ? "max-h-[520px] opacity-100"
+                : "max-h-0 opacity-0 pointer-events-none"
+              } ${reduceMotion
+                ? ""
+                : "transition-all duration-300 ease-out motion-reduce:transition-none"
+              }`}
           >
-            <nav className="flex flex-col gap-3 text-sm font-medium">
-              {navItems.map((item) => {
-                const href = buildHref(item.href);
-                const active = isActive(href);
+            <div className="card-surface p-4">
+              <nav className="flex flex-col gap-3 text-sm font-medium">
+                {navItems.map((item) => {
+                  const href = buildHref(item.href);
+                  const active = isActive(href);
 
-                return (
-                  <Link
-                    key={item.key}
-                    href={href}
-                    aria-current={active ? "page" : undefined}
-                    onClick={() => setMenuOpen(false)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-2 no-underline transition hover:no-underline ${active
+                  return (
+                    <Link
+                      key={item.key}
+                      href={href}
+                      aria-current={active ? "page" : undefined}
+                      onClick={() => setMenuOpen(false)}
+                      className={`flex items-center justify-between rounded-lg px-3 py-2 no-underline transition hover:no-underline ${active
                         ? "bg-muted text-brand"
                         : "text-foreground/70 hover:text-foreground"
-                      }`}
-                  >
-                    {labels.nav[item.key]}
-                  </Link>
-                );
-              })}
-            </nav>
-            <Link
-              href={buildHref("/contact")}
-              onClick={() => setMenuOpen(false)}
-              className="btn-primary mt-4 px-4 py-2 text-sm"
-            >
-              {labels.cta}
-            </Link>
+                        }`}
+                    >
+                      {labels.nav[item.key]}
+                    </Link>
+                  );
+                })}
+              </nav>
+              <Link
+                href={buildHref("/contact")}
+                onClick={() => setMenuOpen(false)}
+                className="btn-primary !rounded-lg mt-4 w-full px-4 py-2 text-sm"
+              >
+                {labels.cta}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

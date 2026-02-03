@@ -12,7 +12,7 @@ const copy = {
       qualitySafety: "Quality & Safety",
       contact: "Contact",
     },
-    cta: "Request a consultation",
+    cta: "Request Consultation",
   },
   np: {
     companyName: "सूर्य कन्स्ट्रक्सन कम्पनी",
