@@ -1,9 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { t, type Lang } from "@/lib/i18n";
 import { services, projects } from "@/lib/content";
 import { CONTACT, SITE_NAME, SITE_URL, getAlternates } from "@/lib/site";
 import Section from "@/components/section";
-import CTA from "@/components/cta";
 import ServiceCard from "@/components/cards/service-card";
 import ProjectCard from "@/components/cards/project-card";
 import Reveal from "@/components/motion/reveal";
@@ -16,7 +16,6 @@ export async function generateMetadata({
 }) {
   const lang = (await params)?.lang ?? "en";
   const locale: Lang = lang === "np" ? "np" : "en";
-  const labels = t(locale);
 
   const title = locale === "np" ? "गृहपृष्ठ" : "Home";
   const description =
@@ -45,48 +44,88 @@ export default async function HomePage({ params }: HomePageProps) {
   const locale: Lang = lang === "np" ? "np" : "en";
   const labels = t(locale);
 
+  const heroEyebrow =
+    locale === "np"
+      ? "सूर्य कन्स्ट्रक्सन कम्पनी प्रा.लि."
+      : "Surya Construction Company Pvt. Ltd.";
   const heroHeading =
     locale === "np"
-      ? "नेपालभरि विश्वासिलो भविष्य निर्माण गर्दै।"
-      : "Building confident futures across Nepal.";
+      ? "नेपालभरि भरपर्दो पूर्वाधार निर्माण गर्दै।"
+      : "Building reliable infrastructure across Nepal.";
   const heroSubtext =
     locale === "np"
-      ? "हामी सिभिल निर्माण, ठेक्का, र परियोजना व्यवस्थापनलाई गुणस्तर र सुरक्षा मापदण्डसहित अघि बढाउँछौं।"
-      : "We deliver civil construction, contracting, and project management with a sharp focus on quality and safety.";
+      ? "अस्पताल, व्यावसायिक भवन, सडक, पुल र जलविद्युत सिभिल काम — कडाइका सुरक्षा र QA/QC सहित।"
+      : "Hospitals, commercial buildings, roads, bridges, and hydropower civil works—delivered with strict safety and QA/QC.";
+  const heroPrimaryLabel =
+    locale === "np" ? "परामर्श अनुरोध" : "Request a Consultation";
+  const heroSecondaryLabel =
+    locale === "np" ? "हाम्रा सेवाहरू" : "Our Services";
 
-  const focusItems =
-    locale === "np"
-      ? [
-          "आवासीय तथा व्यावसायिक निर्माण",
-          "पूर्वाधार तथा साइट विकास",
-          "नवीकरण, फिनिसिङ, र पुनःस्थापना",
-        ]
-      : [
-          "Residential and commercial construction",
-          "Infrastructure and site development",
-          "Renovation, finishing, and rehabilitation",
-        ];
-
-  const stats = [
+  const trustItems = [
     {
       label: locale === "np" ? "स्थापना" : "Established",
-      value: "1978",
+      value: locale === "np" ? "१९७८" : "1978",
     },
     {
-      label: locale === "np" ? "प्रा. लि. स्तरोन्नति" : "Upgraded",
-      value: locale === "np" ? "2002 (प्रा. लि.)" : "2002 (Pvt. Ltd.)",
+      label: locale === "np" ? "प्रा.लि. स्तरोन्नति" : "Upgraded to Pvt. Ltd.",
+      value: locale === "np" ? "२००२" : "2002",
     },
     {
       label: locale === "np" ? "औसत वार्षिक टर्नओभर" : "Avg. Annual Turnover",
       value: "NPR 460M+",
-      note:
-        locale === "np"
-          ? "अन्तिम १० वर्षका उत्कृष्ट ३ वर्षको आधारमा"
-          : "Based on best 3 years (last 10)",
     },
   ];
 
-  const featuredProjects = [projects[0], projects[4], projects[6]];
+  const coreServices = services.slice(0, 4);
+  const projectShowcase = [
+    {
+      project: projects[0],
+      image: "/images/projects/charak-memorial-hospital.webp",
+    },
+    {
+      project: projects[4],
+      image: "/images/projects/nayapul-road-upgrading.webp",
+    },
+    {
+      project: projects[6],
+      image: "/images/projects/pokhara-university-hospital.webp",
+    },
+  ];
+
+  const viewDetailsLabel =
+    locale === "np" ? "विवरण हेर्नुहोस्" : "View details";
+  const viewAllServicesLabel =
+    locale === "np" ? "सबै सेवाहरू" : "View all services";
+  const viewAllProjectsLabel =
+    locale === "np" ? "सबै परियोजनाहरू" : "View all projects";
+  const qualityHeading =
+    locale === "np"
+      ? "सुरक्षा र गुणस्तर हाम्रो आधार"
+      : "Safety and quality at the core";
+  const qualityCopy =
+    locale === "np"
+      ? "सुरक्षा र गुणस्तर हाम्रो कामको प्रत्येक चरणमा समावेश हुन्छ — योजना, कार्यान्वयन, र हस्तान्तरणसम्म।"
+      : "Safety and quality are embedded in every stage of our work — from planning to execution and handover.";
+  const qualityBullets =
+    locale === "np"
+      ? [
+          "समर्पित सुरक्षा अधिकृत तथा PPE",
+          "प्रत्येक माइलस्टोनमा QA/QC जाँच",
+          "बीमा तथा अनुपालन मापदण्ड",
+        ]
+      : [
+          "Dedicated safety officers & PPE",
+          "QA/QC checks at every milestone",
+          "Insurance & compliance standards",
+        ];
+  const finalCtaTitle =
+    locale === "np"
+      ? "आउनुहोस्, दीर्घकालीन संरचना निर्माण गरौं।"
+      : "Let’s build something that lasts.";
+  const finalCtaText =
+    locale === "np"
+      ? "तपाईंको आगामी निर्माण परियोजनाका लागि हाम्रो टोलीसँग कुरा गर्नुहोस्।"
+      : "Talk to our team about your next construction project.";
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "ConstructionCompany",
@@ -118,177 +157,224 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <JsonLd data={[orgSchema, websiteSchema]} />
-      <Section className="pt-10 md:pt-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
-              {labels.companyName}
-            </p>
-            <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-5xl">
-              {heroHeading}
-            </h1>
-            <p className="text-sm text-foreground/70 md:text-lg">
-              {heroSubtext}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href={`/${locale}/contact`}
-                className="rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-brand-hover"
-              >
-                {labels.cta}
-              </Link>
-              <Link
-                href={`/${locale}/services`}
-                className="rounded-full border border-border px-6 py-2.5 text-sm font-semibold text-foreground/80 transition hover:border-brand hover:text-brand"
-              >
-                {labels.nav.services}
-              </Link>
-            </div>
+            <Reveal delay={0}>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
+                {heroEyebrow}
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+                {heroHeading}
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+                {heroSubtext}
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={`/${locale}/contact`}
+                  className="btn-primary"
+                >
+                  {heroPrimaryLabel}
+                </Link>
+                <Link
+                  href={`/${locale}/services`}
+                  className="btn-secondary"
+                >
+                  {heroSecondaryLabel}
+                </Link>
+              </div>
+            </Reveal>
           </div>
-          <div className="grid gap-4 rounded-3xl border border-border bg-card p-6 shadow-sm">
-            {stats.map((stat) => (
-              <div key={stat.label} className="rounded-2xl border border-border bg-muted/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60">
-                  {stat.label}
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-foreground">
-                  {stat.value}
-                </p>
-                {stat.note && (
-                  <p className="mt-1 text-xs text-foreground/60">{stat.note}</p>
-                )}
+          <Reveal delay={120} className="relative">
+            <div className="relative h-[320px] overflow-hidden rounded-xl border border-border bg-muted/40 shadow-sm md:h-[420px]">
+              <Image
+                src="/images/chitwanhospital.webp"
+                alt={
+                  locale === "np"
+                    ? "नेपालमा सूर्य कन्स्ट्रक्सन कम्पनीद्वारा सम्पन्न ठूलो स्तरको अस्पताल निर्माण साइट"
+                    : "Large-scale hospital construction site executed by Surya Construction Company in Nepal"
+                }
+                fill
+                priority
+                className="object-cover"
+                sizes="(min-width: 1024px) 45vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section className="bg-muted/40" align="center">
+        <Reveal>
+          <div className="grid gap-4 text-left md:grid-cols-3">
+            {trustItems.map((item) => (
+              <div
+                key={item.label}
+                className="card-surface flex items-center gap-4 p-4"
+              >
+                <span className="h-10 w-1 rounded-full bg-brand" />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60">
+                    {item.label}
+                  </p>
+                  <p className="text-lg font-semibold text-foreground">
+                    {item.value}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
+        </Reveal>
+      </Section>
+
+      <Section
+        eyebrow={labels.nav.services}
+        title={locale === "np" ? "निर्माण सेवाहरूको गहिराइ" : "Depth of Services"}
+        description={
+          locale === "np"
+            ? "योजना देखि हस्तान्तरणसम्म अनुशासित कार्यान्वयन—सार्वजनिक तथा निजी क्षेत्रका ग्राहकहरूका लागि।"
+            : "Disciplined execution from planning to handover for public and private sector clients."
+        }
+      >
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {coreServices.map((service, index) => (
+            <Reveal key={service.id} delay={index * 80}>
+              <div className="card-surface card-hover group flex h-full flex-col p-6 [&>article]:border-0 [&>article]:bg-transparent [&>article]:p-0 [&>article]:shadow-none [&>article]:rounded-none [&>article]:transition-none [&>article]:hover:translate-y-0">
+                <ServiceCard service={service} lang={locale} />
+                <Link
+                  href={`/${locale}/services`}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground/80 transition group-hover:text-brand hover:underline"
+                >
+                  {viewDetailsLabel}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="pt-6">
+          <Link
+            href={`/${locale}/services`}
+            className="btn-secondary"
+          >
+            {viewAllServicesLabel}
+          </Link>
         </div>
       </Section>
 
       <Section
-        eyebrow={labels.nav.services}
-        title={
-          locale === "np"
-            ? "हाम्रो मुख्य फोकस"
-            : "Core focus areas"
-        }
-        description={
-          locale === "np"
-            ? "समय, बजेट, र गुणस्तरलाई एकै दिशामा राख्ने समन्वित निर्माण सेवा।"
-            : "Integrated construction services that keep schedule, budget, and quality aligned."
-        }
-      >
-        <Reveal>
-          <div className="grid gap-6 md:grid-cols-3">
-            {focusItems.map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-border bg-card p-6 text-sm text-foreground/80"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
-      <Section
-        eyebrow={labels.nav.services}
-        title={
-          locale === "np"
-            ? "नेपालको भूगोलअनुसार सेवा"
-            : "Services built for Nepal’s terrain"
-        }
-        description={
-          locale === "np"
-            ? "प्रमुख निर्माण सेवाहरूको छोटो झलक।"
-            : "A quick look at our core construction capabilities."
-        }
-      >
-        <Reveal>
-          <div className="grid gap-6 md:grid-cols-3">
-            {services.slice(0, 3).map((service) => (
-              <ServiceCard key={service.id} service={service} lang={locale} />
-            ))}
-          </div>
-          <div className="pt-6">
-            <Link
-              href={`/${locale}/services`}
-              className="inline-flex items-center rounded-full border border-border px-5 py-2 text-sm font-semibold text-foreground/80 transition hover:border-brand hover:text-brand"
-            >
-              {locale === "np" ? "सबै सेवाहरू" : "All services"}
-            </Link>
-          </div>
-        </Reveal>
-      </Section>
-
-      <Section
         eyebrow={labels.nav.projects}
-        title={
-          locale === "np"
-            ? "विश्वासका साथ सम्पन्न परियोजना"
-            : "Projects delivered with confidence"
-        }
+        title={locale === "np" ? "चयन गरिएका परियोजनाहरू" : "Selected Projects"}
         description={
           locale === "np"
-            ? "नियमित रिपोर्टिङ र स्पष्ट माइलस्टोनसहितका प्रमुख परियोजनाहरू।"
-            : "Highlights from our portfolio with clear milestones and reporting."
+            ? "१९७८ देखि नेपालभरि जटिल निर्माण तथा पूर्वाधार परियोजनाहरू अनुशासित QA/QC सहित कार्यान्वयन गर्दै आएका छौं।"
+            : "Since 1978, we have delivered complex construction and infrastructure projects across Nepal with disciplined QA/QC."
         }
       >
-        <Reveal>
-          <div className="grid gap-6 md:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} lang={locale} />
-            ))}
-          </div>
-          <div className="pt-6">
-            <Link
-              href={`/${locale}/projects`}
-              className="inline-flex items-center rounded-full border border-border px-5 py-2 text-sm font-semibold text-foreground/80 transition hover:border-brand hover:text-brand"
-            >
-              {locale === "np" ? "परियोजनाहरू हेर्नुहोस्" : "View projects"}
-            </Link>
-          </div>
-        </Reveal>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projectShowcase.map((item, index) => (
+            <Reveal key={item.project.id} delay={index * 90}>
+              <div className="card-surface card-hover group flex h-full flex-col overflow-hidden [&>article]:border-0 [&>article]:bg-transparent [&>article]:p-6 [&>article]:shadow-none [&>article]:rounded-none [&>article]:transition-none [&>article]:hover:translate-y-0">
+                <div className="relative h-40 w-full">
+                  <Image
+                    src={item.image}
+                    alt={
+                      locale === "np"
+                        ? `${item.project.location[locale]} मा ${item.project.title[locale]} निर्माण परियोजना`
+                        : `${item.project.title[locale]} construction project in ${item.project.location[locale]}`
+                    }
+                    fill
+                    className="object-cover transition duration-500 motion-safe:group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                </div>
+                <ProjectCard project={item.project} lang={locale} />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="pt-6">
+          <Link
+            href={`/${locale}/projects`}
+            className="btn-secondary"
+          >
+            {viewAllProjectsLabel}
+          </Link>
+        </div>
       </Section>
 
-      <Section
-        eyebrow={labels.nav.qualitySafety}
-        title={
-          locale === "np"
-            ? "सुरक्षा र गुणस्तर हाम्रो आधार"
-            : "Safety and quality at the core"
-        }
-        description={
-          locale === "np"
-            ? "PPE, सुरक्षा अधिकृत, QA/QC परीक्षण, र बीमा कभरेजमार्फत हामी साइट अनुशासन र मापदण्ड सुनिश्चित गर्छौं।"
-            : "With PPE, safety officers, QA/QC checks, and insurance coverage, we enforce disciplined, standards-driven sites."
-        }
-      >
-        <Reveal>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href={`/${locale}/quality-safety`}
-              className="rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-brand-hover"
-            >
-              {labels.nav.qualitySafety}
-            </Link>
-          </div>
-        </Reveal>
+      <Section eyebrow={labels.nav.qualitySafety} title={qualityHeading}>
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <Reveal>
+            <div className="relative h-[280px] overflow-hidden rounded-xl border border-border bg-muted/40 shadow-sm md:h-[360px]">
+              <Image
+                src="/images/globalcollege.webp"
+                alt={
+                  locale === "np"
+                    ? "सुरक्षा उपकरणसहित साइट निरीक्षण गर्दै निर्माण टोली"
+                    : "Construction team conducting safety checks with PPE on site"
+                }
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/35 via-black/10 to-transparent" />
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="space-y-5">
+              <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+                {qualityCopy}
+              </p>
+              <ul className="space-y-3 text-sm text-foreground/80 md:text-base">
+                {qualityBullets.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-brand" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div>
+                <Link
+                  href={`/${locale}/quality-safety`}
+                  className="btn-primary"
+                >
+                  {labels.nav.qualitySafety}
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </Section>
 
-      <Section>
+      <Section className="bg-gradient-to-r from-brand/10 via-brand/5 to-transparent">
         <Reveal>
-          <CTA
-            title={locale === "np" ? "सँगै निर्माण गरौं।" : "Let’s build together."}
-            text={
-              locale === "np"
-                ? "परियोजनाको दायरा, स्थान, र समयरेखा बताउनुहोस्। हामी स्पष्ट योजना सहित प्रतिक्रिया दिनेछौं।"
-                : "Share your scope, location, and timeline. We'll respond with a clear plan and next steps."
-            }
-            primaryLabel={labels.cta}
-            primaryHref={`/${locale}/contact`}
-            secondaryLabel={labels.nav.projects}
-            secondaryHref={`/${locale}/projects`}
-          />
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-semibold leading-tight text-foreground md:text-3xl">
+                {finalCtaTitle}
+              </h2>
+              <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+                {finalCtaText}
+              </p>
+            </div>
+            <Link
+              href={`/${locale}/contact`}
+              className="btn-primary px-7 py-3"
+            >
+              {locale === "np" ? "हाम्रो टोलीसँग सम्पर्क" : "Contact Our Team"}
+            </Link>
+          </div>
         </Reveal>
       </Section>
     </>

@@ -33,9 +33,9 @@ export default function LangSwitch() {
             key={locale}
             type="button"
             onClick={() => handleSwitch(locale)}
-            className={`rounded-full px-2.5 py-1 transition ${
+            className={`rounded-full px-2.5 py-1 transition-all duration-200 ${
               isActive
-                ? "bg-brand text-black"
+                ? "bg-brand text-white"
                 : "text-foreground/80 hover:text-brand"
             }`}
             aria-pressed={isActive}

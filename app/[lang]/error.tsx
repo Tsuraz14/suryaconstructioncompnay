@@ -19,24 +19,19 @@ export default function Error({
       : "Please try again or return to the homepage.";
 
   return (
-    <div className="container flex min-h-[60vh] items-center justify-center py-16">
+    <div className="mx-auto flex min-h-[60vh] w-full max-w-7xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-xl space-y-4 text-center">
-        <h1 className="text-3xl font-semibold text-foreground md:text-4xl">
+        <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl">
           {title}
         </h1>
-        <p className="text-sm text-foreground/70 md:text-base">{body}</p>
+        <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+          {body}
+        </p>
         <div className="flex flex-wrap justify-center gap-3">
-          <button
-            type="button"
-            onClick={reset}
-            className="rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-brand-hover"
-          >
+          <button type="button" onClick={reset} className="btn-primary">
             {lang === "np" ? "पुनः प्रयास" : "Retry"}
           </button>
-          <Link
-            href={`/${lang}`}
-            className="rounded-full border border-border px-6 py-2.5 text-sm font-semibold text-foreground/80 transition hover:border-brand hover:text-brand"
-          >
+          <Link href={`/${lang}`} className="btn-secondary">
             {lang === "np" ? "गृहपृष्ठ" : "Home"}
           </Link>
         </div>

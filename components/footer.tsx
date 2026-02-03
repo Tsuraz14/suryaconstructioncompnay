@@ -25,7 +25,6 @@ const navItems = [
   { key: "about", href: "/about" },
   { key: "services", href: "/services" },
   { key: "projects", href: "/projects" },
-  { key: "qualitySafety", href: "/quality-safety" },
   { key: "contact", href: "/contact" },
 ] as const;
 
@@ -42,19 +41,19 @@ export default function Footer({ lang }: FooterProps) {
 
   return (
     <footer className="border-t border-border bg-card">
-      <div className="container grid gap-8 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:px-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div className="space-y-3">
           <p className="text-lg font-semibold text-foreground">{copy.title}</p>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {copy.registered}: Pokhara-26, Kaski, Gandaki Province, Nepal
           </p>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {copy.city}: Mustang Chowk, Pokhara-7, Kaski
           </p>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {copy.phone}: +977-9856021612, 061-461129
           </p>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {copy.email}: surya_cco@yahoo.com
           </p>
         </div>
@@ -63,7 +62,7 @@ export default function Footer({ lang }: FooterProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/60">
             {copy.quickLinks}
           </p>
-          <nav className="grid gap-2 text-sm text-foreground/70">
+          <nav className="grid gap-2 text-sm text-foreground/80">
             {navItems.map((item) => (
               <Link
                 key={item.key}
@@ -80,19 +79,19 @@ export default function Footer({ lang }: FooterProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/60">
             {labels.companyName}
           </p>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {labels.cta}
           </p>
           <Link
             href={buildHref("/contact")}
-            className="inline-flex w-fit items-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-hover"
+            className="btn-primary w-fit px-4 py-2 text-sm"
           >
             {labels.nav.contact}
           </Link>
         </div>
       </div>
       <div className="border-t border-border">
-        <div className="container py-4 text-xs text-foreground/60">
+        <div className="mx-auto w-full max-w-7xl px-4 py-4 text-xs text-foreground/60 sm:px-6 lg:px-8">
           © {year} Surya Construction Company Pvt. Ltd.
         </div>
       </div>

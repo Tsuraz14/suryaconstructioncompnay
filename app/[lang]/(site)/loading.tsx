@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="container py-16">
+    <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
         <div className="space-y-6">
           <div className="flex items-center gap-3">
@@ -17,7 +17,7 @@ export default function Loading() {
             <div className="h-10 w-36 rounded-full bg-muted animate-pulse" />
           </div>
         </div>
-        <div className="grid gap-4 rounded-3xl border border-border bg-card p-6">
+        <div className="card-surface grid gap-4 p-6">
           <div className="h-20 rounded-2xl bg-muted animate-pulse" />
           <div className="h-20 rounded-2xl bg-muted animate-pulse" />
           <div className="h-20 rounded-2xl bg-muted animate-pulse" />

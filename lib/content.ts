@@ -228,7 +228,7 @@ export const projects: Project[] = [
   },
   {
     id: "pokhara-pharma-factory",
-    status: "ongoing",
+    status: "completed",
     title: {
       en: "Pokhara Pharmaceuticals Factory Building",
       np: "पोखरा फर्मास्युटिकल्स कारखाना भवन",
@@ -245,7 +245,7 @@ export const projects: Project[] = [
   },
   {
     id: "pokhara-university-hospital",
-    status: "ongoing",
+    status: "completed",
     title: {
       en: "100-bedded Hospital, Pokhara University",
       np: "१०० शय्याको अस्पताल, पोखरा विश्वविद्यालय",
@@ -262,7 +262,7 @@ export const projects: Project[] = [
   },
   {
     id: "pokhara-event-centre",
-    status: "ongoing",
+    status: "completed",
     title: {
       en: "Pokhara Event Centre",
       np: "पोखरा इभेन्ट सेन्टर",

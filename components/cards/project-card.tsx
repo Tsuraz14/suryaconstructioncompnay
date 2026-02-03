@@ -23,17 +23,17 @@ export default function ProjectCard({ project, lang }: ProjectCardProps) {
   const statusTone = project.status === "ongoing" ? "brand" : "muted";
 
   return (
-    <article className="rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand/50">
+    <article className="card-surface card-hover p-6">
       <div className="flex items-center justify-between gap-3">
         <Badge tone={statusTone}>{statusLabel}</Badge>
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/50">
           {project.location[lang]}
         </span>
       </div>
-      <h3 className="mt-4 text-base font-semibold text-foreground">
+      <h3 className="mt-4 text-base font-semibold leading-tight text-foreground">
         {project.title[lang]}
       </h3>
-      <p className="mt-2 text-sm text-foreground/70">
+      <p className="mt-2 text-sm leading-relaxed text-foreground/80 md:text-base">
         {project.summary[lang]}
       </p>
       <div className="mt-4 flex flex-wrap gap-2">

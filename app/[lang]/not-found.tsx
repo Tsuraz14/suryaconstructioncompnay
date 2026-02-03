@@ -16,22 +16,24 @@ export default async function NotFound({
       : "The page you are looking for doesn't exist. Please return home or contact us for help.";
 
   return (
-    <div className="container flex min-h-[60vh] items-center justify-center py-16">
+    <div className="mx-auto flex min-h-[60vh] w-full max-w-7xl items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-xl space-y-4 text-center">
-        <h1 className="text-3xl font-semibold text-foreground md:text-4xl">
+        <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl">
           {title}
         </h1>
-        <p className="text-sm text-foreground/70 md:text-base">{body}</p>
+        <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+          {body}
+        </p>
         <div className="flex flex-wrap justify-center gap-3">
           <Link
             href={`/${locale}`}
-            className="rounded-full bg-brand px-6 py-2.5 text-sm font-semibold text-black transition hover:bg-brand-hover"
+            className="btn-primary"
           >
             {locale === "np" ? "गृहपृष्ठ" : "Back to home"}
           </Link>
           <Link
             href={`/${locale}/contact`}
-            className="rounded-full border border-border px-6 py-2.5 text-sm font-semibold text-foreground/80 transition hover:border-brand hover:text-brand"
+            className="btn-secondary"
           >
             {locale === "np" ? "सम्पर्क" : "Contact"}
           </Link>

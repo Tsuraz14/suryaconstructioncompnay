@@ -46,17 +46,17 @@ type ServiceCardProps = {
 
 export default function ServiceCard({ service, lang }: ServiceCardProps) {
   return (
-    <article className="rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:border-brand/50">
+    <article className="card-surface card-hover group p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-3">
-          <h3 className="text-base font-semibold text-foreground">
+          <h3 className="text-base font-semibold leading-tight text-foreground">
             {service.title[lang]}
           </h3>
-          <p className="text-sm text-foreground/70">
+          <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
             {service.description[lang]}
           </p>
         </div>
-        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-muted/60 text-brand">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-muted/60 text-brand transition duration-300 group-hover:scale-105">
           <span className="h-5 w-5">{iconMap[service.icon]}</span>
         </span>
       </div>

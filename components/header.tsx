@@ -13,7 +13,6 @@ const navItems = [
   { key: "about", href: "/about" },
   { key: "services", href: "/services" },
   { key: "projects", href: "/projects" },
-  { key: "qualitySafety", href: "/quality-safety" },
   { key: "contact", href: "/contact" },
 ] as const;
 
@@ -49,12 +48,12 @@ export default function Header({ lang }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <div className="container">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 py-3 md:py-4">
           <Link href={`/${lang}`} className="flex items-center gap-3">
             <div className="rounded-full border border-border bg-card p-1">
               <Image
-                src="/logo.svg"
+                src="/logo/logo.webp"
                 alt={labels.companyName}
                 width={32}
                 height={32}
@@ -84,11 +83,10 @@ export default function Header({ lang }: HeaderProps) {
                   key={item.key}
                   href={href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative whitespace-nowrap transition ${
-                    active
-                      ? "text-brand after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand after:content-['']"
-                      : "text-foreground/70 hover:text-foreground"
-                  }`}
+                  className={`relative whitespace-nowrap text-sm font-medium no-underline transition-colors hover:no-underline after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-brand after:transition-transform after:duration-200 after:content-[''] ${active
+                      ? "text-brand after:scale-x-100"
+                      : "text-foreground/70 hover:text-foreground hover:after:scale-x-100"
+                    }`}
                 >
                   {labels.nav[item.key]}
                 </Link>
@@ -99,7 +97,7 @@ export default function Header({ lang }: HeaderProps) {
           <div className="hidden items-center gap-2 md:flex">
             <Link
               href={buildHref("/contact")}
-              className="rounded-full bg-brand px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-hover"
+              className="btn-primary px-4 py-2 text-sm"
             >
               {labels.cta}
             </Link>
@@ -130,10 +128,10 @@ export default function Header({ lang }: HeaderProps) {
       </div>
 
       <div className={`md:hidden ${menuOpen ? "block" : "hidden"}`}>
-        <div className="container pb-4">
+        <div className="mx-auto w-full max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
           <div
             id="mobile-nav"
-            className="rounded-2xl border border-border bg-card p-4 shadow-sm"
+            className="card-surface p-4"
           >
             <nav className="flex flex-col gap-3 text-sm font-medium">
               {navItems.map((item) => {
@@ -146,11 +144,10 @@ export default function Header({ lang }: HeaderProps) {
                     href={href}
                     aria-current={active ? "page" : undefined}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-2 transition ${
-                      active
+                    className={`flex items-center justify-between rounded-lg px-3 py-2 no-underline transition hover:no-underline ${active
                         ? "bg-muted text-brand"
                         : "text-foreground/70 hover:text-foreground"
-                    }`}
+                      }`}
                   >
                     {labels.nav[item.key]}
                   </Link>
@@ -160,7 +157,7 @@ export default function Header({ lang }: HeaderProps) {
             <Link
               href={buildHref("/contact")}
               onClick={() => setMenuOpen(false)}
-              className="mt-4 flex items-center justify-center rounded-full bg-brand px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-hover"
+              className="btn-primary mt-4 px-4 py-2 text-sm"
             >
               {labels.cta}
             </Link>
