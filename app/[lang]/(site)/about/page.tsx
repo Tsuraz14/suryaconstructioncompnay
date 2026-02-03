@@ -110,6 +110,15 @@ export default async function AboutPage({ params }: AboutPageProps) {
       ? "जिम्मेवारी, अनुशासित कार्यान्वयन, र दीर्घकालीन ग्राहक विश्वासमा आधारित नेतृत्व।"
       : "Leadership grounded in responsibility, disciplined execution, and long-term client trust.";
 
+  const cooTitle =
+    locale === "np" ? "मुख्य सञ्चालन अधिकृत" : "Chief Operating Officer";
+  const cooRole =
+    locale === "np" ? "मुख्य सञ्चालन अधिकृत" : "Chief Operating Officer";
+  const cooBody =
+    locale === "np"
+      ? "आकाश बराल सूर्य कन्स्ट्रक्सन कम्पनी प्रा.लि. का मुख्य सञ्चालन अधिकृतका रूपमा दैनिक सञ्चालन, परियोजना कार्यान्वयन तथा प्राविधिक टोलीबीचको समन्वयको जिम्मेवारी सम्हाल्दै आएका छन्।\n\nयोजना निर्माण, साइट व्यवस्थापन, गुणस्तर नियन्त्रण तथा समयमै परियोजना सम्पन्न गर्ने विषयमा केन्द्रित रहँदै उहाँले परियोजना उद्देश्यलाई व्यवहारिक र अनुशासित कार्यान्वयनमा रूपान्तरण गर्न महत्वपूर्ण भूमिका निर्वाह गर्नुहुन्छ।"
+      : "Akash Baral serves as the Chief Operating Officer of Surya Construction Company Pvt. Ltd., overseeing day-to-day operations, project execution, and coordination across technical teams.\n\nWith a strong focus on planning, site management, quality control, and timely delivery, he plays a key role in translating project objectives into disciplined on-ground execution. His leadership supports efficient resource utilization, safety compliance, and consistent operational performance across projects.";
+
   const pillars: Pillar[] =
     locale === "np"
       ? [
@@ -433,6 +442,36 @@ export default async function AboutPage({ params }: AboutPageProps) {
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/80">
                 {leadershipBody}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section title={cooTitle}>
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <Reveal className="group">
+            <div className="relative h-[260px] overflow-hidden rounded-2xl border border-border/70 bg-muted/40 shadow-sm md:h-[320px]">
+              <Image
+                src="/images/about/akash-baral.webp"
+                alt="Akash Baral, Chief Operating Officer of Surya Construction Company Pvt. Ltd."
+                fill
+                className="object-cover transition duration-700 ease-out motion-safe:translate-y-3 motion-safe:group-[.opacity-100]:translate-y-0"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="rounded-2xl border border-border/70 bg-card/70 p-6 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand">
+                {labels.companyName}
+              </p>
+              <h3 className="mt-3 text-xl font-semibold text-foreground">
+                Akash Baral
+              </h3>
+              <p className="mt-1 text-sm text-foreground/60">{cooRole}</p>
+              <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-foreground/80">
+                {cooBody}
               </p>
             </div>
           </Reveal>
