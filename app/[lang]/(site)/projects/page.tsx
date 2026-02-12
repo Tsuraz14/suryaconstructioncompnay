@@ -81,6 +81,60 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
       },
     },
     {
+      id: "water-resources-irr-development-division-office",
+      status: "completed",
+      category: "Infrastructure",
+      title: {
+        en: "Water Resources and Irrigation Development Division Office Building",
+        np: "जलस्रोत तथा सिँचाइ विकास डिभिजन कार्यालय भवन",
+      },
+      location: {
+        en: "Pokhara, Kaski",
+        np: "पोखरा, कास्की",
+      },
+      image: "/images/projects/water-resources-division-office.webp",
+      shortDescription: {
+        en: "Completed office building construction for the Water Resources and Irrigation Development Division.",
+        np: "जलस्रोत तथा सिँचाइ विकास डिभिजनका लागि कार्यालय भवन निर्माण सम्पन्न।",
+      },
+    },
+    {
+      id: "khilung-kalika-poultry-farm",
+      status: "completed",
+      category: "Infrastructure",
+      title: {
+        en: "Khilung Kalika Agro Farm Pvt. Ltd. — Poultry Farm",
+        np: "खिलुङ कालिका एग्रो फार्म प्रा.लि. — कुखुरा फार्म",
+      },
+      location: {
+        en: "Helu, Syangja",
+        np: "हेलु, स्याङ्जा",
+      },
+      image: "/images/projects/khilung-kalika-poultry-farm.webp",
+      shortDescription: {
+        en: "Poultry farm infrastructure developed with functional planning and durable execution.",
+        np: "कार्यात्मक योजना र दिगो निर्माणसहित कुखुरा फार्म पूर्वाधार विकास।",
+      },
+    },
+    {
+      id: "khilung-kalika-biogas-power-plant",
+      status: "completed",
+      category: "Infrastructure",
+      title: {
+        en: "Khilung Kalika Agro Farm Pvt. Ltd. — 330 kW Biogas Power Plant & Fertilizer Preparation",
+        np: "खिलुङ कालिका एग्रो फार्म प्रा.लि. — ३३० किलोवाट बायोग्यास पावर प्लान्ट तथा मल तयारी",
+      },
+      location: {
+        en: "Helu, Syangja",
+        np: "हेलु, स्याङ्जा",
+      },
+      image: "/images/projects/khilung-kalika-biogas-plant.webp",
+      shortDescription: {
+        en: "Biogas power generation and fertilizer preparation facility delivered with integrated civil works.",
+        np: "एकीकृत सिभिल कार्यसहित बायोग्यास विद्युत उत्पादन र मल तयारी सुविधा निर्माण सम्पन्न।",
+      },
+    },
+    {
       id: "gandaki-medical-college",
       status: "completed",
       category: "Hospital",

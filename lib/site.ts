@@ -36,7 +36,7 @@ export function getAlternates(lang: Lang, path: string) {
     canonical: `${SITE_URL}/${lang}${path}`,
     languages: {
       en: `${SITE_URL}/en${path}`,
-      np: `${SITE_URL}/np${path}`,
+      ne: `${SITE_URL}/np${path}`,
     },
   };
 }

@@ -69,7 +69,7 @@ export default function Footer({ lang }: FooterProps) {
                   width={48}
                   height={48}
                   sizes="48px"
-                  className="h-10 w-auto md:h-12"
+                  className="h-10 w-10 md:h-12 md:w-12"
                 />
               </div>
               <div className="leading-tight">

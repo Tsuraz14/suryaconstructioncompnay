@@ -50,21 +50,6 @@ export default async function ContactPage({ params }: ContactPageProps) {
       ? "परियोजना दायरा र समयरेखा साझा गर्नुहोस्। हामी छिटो प्रतिक्रिया दिन्छौं र बाध्यकारी नभएको छलफल गर्छौं।"
       : "Share your project scope and timeline. We respond promptly with a no-obligation discussion.";
 
-  const trustMessage =
-    locale === "np"
-      ? "हामी छिटो प्रतिक्रिया दिन्छौं। कुनै बाध्यकारी छैन—परियोजनाबारे सहज छलफल।"
-      : "We respond promptly. No-obligation discussion with our team.";
-
-  const formNote =
-    locale === "np"
-      ? "हामी विवरण समीक्षा गरी अर्को चरणबारे सम्पर्क गर्नेछौं।"
-      : "We will review the details and contact you with next steps.";
-
-  const mapText =
-    locale === "np"
-      ? "यहाँ नक्सा स्थान उपलब्ध हुनेछ।"
-      : "Map location will be available here.";
-
   const ctaTitle =
     locale === "np"
       ? "तपाईंको आगामी निर्माण परियोजनाबारे छलफल गरौं।"
@@ -174,141 +159,130 @@ export default async function ContactPage({ params }: ContactPageProps) {
       </Section>
 
       <Section
-        eyebrow={locale === "np" ? "अनुरोध" : "Inquiry"}
-        title={
-          locale === "np"
-            ? "परियोजनाबारे जानकारी पठाउनुहोस्"
-            : "Send us your project details"
-        }
+        eyebrow={locale === "np" ? "छिटो सम्पर्क" : "Quick Contact"}
+        title={locale === "np" ? "छिटो सम्पर्क" : "Quick Contact"}
         description={
           locale === "np"
-            ? "हामी छिटो प्रतिक्रिया दिई अर्को चरण स्पष्ट गर्नेछौं।"
-            : "We respond promptly and outline the next steps."
+            ? "WhatsApp वा इमेलमार्फत छिटो सम्पर्क गर्नुहोस्। हामी छिट्टै प्रतिक्रिया दिन्छौं।"
+            : "Reach us instantly on WhatsApp or email. We respond promptly."
         }
       >
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="grid gap-6 md:grid-cols-2">
           <Reveal>
-            <div className="card-surface p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-foreground">
-                {locale === "np" ? "हामी यहाँ छौं" : "We’re here to help"}
-              </h3>
-              <p className="mt-3 text-base leading-relaxed text-foreground/80 md:text-lg">
-                {trustMessage}
-              </p>
+            <div className="card-surface group flex h-full flex-col justify-between rounded-xl border border-border/70 bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366]">
+                  <svg
+                    viewBox="0 0 32 32"
+                    aria-hidden="true"
+                    className="h-6 w-6"
+                    fill="currentColor"
+                  >
+                    <path d="M16.001 4.8c-6.2 0-11.2 4.6-11.2 10.3 0 1.8.6 3.6 1.7 5.2L4.8 27.2l7.2-1.7c1.2.6 2.6.9 4 .9 6.2 0 11.2-4.6 11.2-10.3S22.2 4.8 16.001 4.8zm6.4 14.4c-.3.9-1.6 1.7-2.3 1.8-.6.1-1.3.2-2.1 0-.5-.1-1.1-.3-1.8-.6-3.3-1.4-5.5-4.8-5.7-5.1-.2-.2-1.3-1.6-1.3-3.1 0-1.5.8-2.2 1.1-2.5.3-.3.7-.4.9-.4h.7c.2 0 .6-.1.9.6.3.7 1 2.5 1.1 2.7.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.2.4 1 1.7 2.1 2.8 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.2.8 0 .2-.2.9-1 1.1-1.3.2-.3.4-.3.7-.2.3.1 2.1 1 2.4 1.2.3.2.6.3.7.4.1.1.1.6-.2 1.5z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {locale === "np" ? "WhatsApp मा कुरा गर्नुहोस्" : "Chat on WhatsApp"}
+                </h3>
+                <p className="mt-2 text-sm text-foreground/80">
+                  {locale === "np" ? "+९७७ ९८५६०१४०२२" : "+977 9856014022"}
+                </p>
+              </div>
+              <div className="mt-6">
+                <a
+                  href={`https://wa.me/9779856014022?text=${encodeURIComponent(
+                    locale === "np"
+                      ? "नमस्ते, म निर्माण परियोजनाबारे जानकारी लिन चाहन्छु।"
+                      : "Hello, I would like to inquire about a construction project.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={
+                    locale === "np" ? "WhatsApp खोल्नुहोस्" : "Open WhatsApp"
+                  }
+                  className="inline-flex items-center justify-center rounded-lg bg-[#25D366] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {locale === "np" ? "WhatsApp खोल्नुहोस्" : "Open WhatsApp"}
+                </a>
+              </div>
             </div>
           </Reveal>
+
           <Reveal delay={120}>
-            <form className="card-surface grid gap-4 p-6 md:grid-cols-2 md:p-8">
-              <div className="space-y-2">
-                <label
-                  htmlFor="full-name"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60"
+            <div className="card-surface group flex h-full flex-col justify-between rounded-xl border border-border/70 bg-card p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand/10 text-brand">
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    className="h-6 w-6"
+                    fill="currentColor"
+                  >
+                    <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 11 4 6.01V6h16zM4 18V8.24l7.4 4.44a1 1 0 0 0 1.2 0L20 8.24V18H4z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {locale === "np" ? "इमेल पठाउनुहोस्" : "Send an Email"}
+                </h3>
+                <p className="mt-2 text-sm text-foreground/80">
+                  surya_cco@yahoo.com
+                </p>
+              </div>
+              <div className="mt-6">
+                <a
+                  href={`mailto:surya_cco@yahoo.com?subject=${encodeURIComponent(
+                    locale === "np"
+                      ? "परियोजना सम्बन्धी जानकारी"
+                      : "Project Inquiry",
+                  )}&body=${encodeURIComponent(
+                    locale === "np"
+                      ? "नमस्ते, म निर्माण परियोजनाबारे छलफल गर्न चाहन्छु।"
+                      : "Hello, I would like to discuss a construction project.",
+                  )}`}
+                  aria-label={locale === "np" ? "इमेल गर्नुहोस्" : "Email Us"}
+                  className="inline-flex items-center justify-center rounded-lg bg-brand px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  {locale === "np" ? "पुरा नाम" : "Full Name"}{" "}
-                  <span className="text-brand">*</span>
-                </label>
-                <input
-                  id="full-name"
-                  name="full-name"
-                  type="text"
-                  required
-                  placeholder={locale === "np" ? "तपाईंको नाम" : "Your name"}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-                />
+                  {locale === "np" ? "इमेल गर्नुहोस्" : "Email Us"}
+                </a>
               </div>
-              <div className="space-y-2">
-                <label
-                  htmlFor="phone-number"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60"
-                >
-                  {locale === "np" ? "फोन नम्बर" : "Phone Number"}{" "}
-                  <span className="text-brand">*</span>
-                </label>
-                <input
-                  id="phone-number"
-                  name="phone-number"
-                  type="tel"
-                  required
-                  placeholder={locale === "np" ? "फोन नम्बर" : "Phone number"}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-                />
-              </div>
-              <div className="space-y-2 md:col-span-2">
-                <label
-                  htmlFor="email-address"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60"
-                >
-                  {locale === "np" ? "इमेल ठेगाना" : "Email Address"}{" "}
-                  <span className="text-brand">*</span>
-                </label>
-                <input
-                  id="email-address"
-                  name="email-address"
-                  type="email"
-                  required
-                  placeholder={locale === "np" ? "इमेल ठेगाना" : "Email address"}
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-                />
-              </div>
-              <div className="space-y-2 md:col-span-2">
-                <label
-                  htmlFor="project-location"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60"
-                >
-                  {locale === "np"
-                    ? "परियोजना स्थान (ऐच्छिक)"
-                    : "Project Location (optional)"}
-                </label>
-                <input
-                  id="project-location"
-                  name="project-location"
-                  type="text"
-                  placeholder={
-                    locale === "np" ? "परियोजना स्थान" : "Project location"
-                  }
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-                />
-              </div>
-              <div className="space-y-2 md:col-span-2">
-                <label
-                  htmlFor="message"
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60"
-                >
-                  {locale === "np" ? "सन्देश" : "Message"}{" "}
-                  <span className="text-brand">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  required
-                  placeholder={
-                    locale === "np" ? "परियोजना विवरण" : "Project details"
-                  }
-                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
-                />
-              </div>
-              <div className="md:col-span-2">
-                <button type="button" className="btn-primary">
-                  {locale === "np" ? "परामर्श अनुरोध" : "Request a Consultation"}
-                </button>
-                <p className="mt-3 text-sm text-foreground/60">{formNote}</p>
-              </div>
-            </form>
+            </div>
           </Reveal>
         </div>
       </Section>
 
-      <Section
-        eyebrow={locale === "np" ? "स्थान" : "Location"}
-        title={locale === "np" ? "नक्सा" : "Map"}
-      >
-        <Reveal>
-          <div className="rounded-xl border border-border/70 bg-muted/40 p-8 text-sm leading-relaxed text-foreground/80">
-            {mapText}
-          </div>
-        </Reveal>
-      </Section>
+      <section className="py-14 md:py-20">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="mb-8 space-y-3">
+              <h2 className="text-2xl font-semibold leading-tight text-foreground md:text-3xl">
+                {locale === "np" ? "हाम्रो कार्यालयको स्थान" : "Our Office Location"}
+              </h2>
+              <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
+                {locale === "np"
+                  ? "पोखरा, गण्डकी प्रदेशमा रहेको हाम्रो कार्यालयमा भ्रमण गर्नुहोस्।"
+                  : "Visit our office in Pokhara, Gandaki Province."}
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="overflow-hidden rounded-xl bg-white shadow-lg dark:bg-neutral-900">
+              <div className="aspect-video">
+                <iframe
+                  title="Surya Construction Company Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.740845818175!2d83.97166947570501!3d28.198594475904503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39959509d70669d1%3A0x5146cc057a46bf2b!2sSurya%20Construction%20Company%20Pvt.%20Ltd!5e1!3m2!1sen!2snp!4v1770862935094!5m2!1sen!2snp"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="h-full w-full"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <Section className="bg-gradient-to-r from-brand/10 via-brand/5 to-transparent">
         <Reveal>

@@ -116,7 +116,7 @@ export default function Header({ lang }: HeaderProps) {
                 width={48}
                 height={48}
                 sizes="(max-width: 768px) 40px, 48px"
-                className="h-10 w-auto md:h-12"
+                className="h-10 w-10 md:h-12 md:w-12"
                 priority
                 placeholder="blur"
                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iMTYiIGZpbGw9IiNGMzhBMTUiLz48L3N2Zz4="

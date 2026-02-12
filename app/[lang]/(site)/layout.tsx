@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import PageFade from "@/components/motion/page-fade";
+import WhatsAppFloat from "@/components/whatsapp-float";
 
 type SiteLayoutProps = {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export default async function SiteLayout({
           {children}
         </main>
       </PageFade>
+      <WhatsAppFloat />
       <Footer lang={locale} />
     </div>
   );
