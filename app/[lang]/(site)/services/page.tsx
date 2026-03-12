@@ -195,6 +195,36 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
         np: "संरचना मर्मत तथा पुनःस्थापना",
       },
     },
+    {
+      id: "construction-consultation",
+      title: {
+        en: "Construction Consultation",
+        np: "निर्माण परामर्श सेवा",
+      },
+      description: {
+        en: "Surya Construction Company also provides construction consultation services to support project planning, feasibility assessment, cost estimation, and execution strategies. Our practical construction experience allows us to guide clients in making informed decisions before and during project development.",
+        np: "सूर्य कन्स्ट्रक्सन कम्पनीले निर्माण परियोजनाको योजना निर्माण, सम्भाव्यता अध्ययन, लागत अनुमान तथा कार्यान्वयन रणनीतिका लागि निर्माण परामर्श सेवा पनि प्रदान गर्दछ। हाम्रो व्यावहारिक निर्माण अनुभवले ग्राहकहरूलाई परियोजना विकास अघि र कार्यान्वयनको क्रममा सही निर्णय लिन सहयोग गर्दछ।",
+      },
+      bullets: {
+        en: [
+          "Project feasibility guidance",
+          "Preliminary cost estimation",
+          "Construction planning support",
+          "Technical advice for project execution",
+        ],
+        np: [
+          "परियोजनाको सम्भाव्यता सम्बन्धी परामर्श",
+          "प्रारम्भिक लागत अनुमान",
+          "निर्माण योजना तयारी सहयोग",
+          "परियोजना कार्यान्वयनका लागि प्राविधिक सल्लाह",
+        ],
+      },
+      image: "/images/services/construction-consultation.webp",
+      alt: {
+        en: "Construction consultation and planning discussion",
+        np: "निर्माण परामर्श तथा योजना छलफल",
+      },
+    },
   ];
 
   const processTitle =
@@ -279,6 +309,48 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
       : "Engage a construction partner trusted for quality and execution.";
   const ctaButton =
     locale === "np" ? "हाम्रो टोलीसँग सम्पर्क" : "Contact Our Team";
+  const equipmentSupportTitle =
+    locale === "np" ? "उपकरण भाडा सहयोग" : "Equipment Rental Support";
+  const equipmentSupportText =
+    locale === "np"
+      ? "निर्माण सेवासँगै परियोजना-आधारित भाडा सहयोगका लागि चयनित उपकरणहरू पनि उपलब्ध छन्।"
+      : "In addition to construction services, we also offer selected equipment for project-based rental support.";
+  const equipmentSupportCta =
+    locale === "np" ? "उपकरण भाडा हेर्नुहोस्" : "View Equipment Rental";
+  const equipmentSupportItems = [
+    {
+      code: "GR",
+      name: { en: "Grader", np: "ग्रेडर" },
+      description: {
+        en: "Road leveling and profile shaping support.",
+        np: "सडक सम्याउने तथा प्रोफाइल मिलाउने सहयोग।",
+      },
+    },
+    {
+      code: "EX",
+      name: { en: "Excavator", np: "एक्स्काभेटर" },
+      description: {
+        en: "Excavation and heavy earthmoving tasks.",
+        np: "उत्खनन तथा भारी माटो सार्ने कार्यहरू।",
+      },
+    },
+    {
+      code: "BL",
+      name: { en: "Backhoe Loader", np: "ब्याकहो लोडर" },
+      description: {
+        en: "Trenching and loading for site operations.",
+        np: "साइट परिचालनका लागि ट्रेन्चिङ र लोडिङ।",
+      },
+    },
+    {
+      code: "TP",
+      name: { en: "Tipper", np: "टिपर" },
+      description: {
+        en: "Bulk material transport across projects.",
+        np: "परियोजनामा ठूलो परिमाणमा सामग्री ढुवानी।",
+      },
+    },
+  ] as const;
 
   const breadcrumbs = buildBreadcrumbs(locale, [
     { name: locale === "np" ? "गृहपृष्ठ" : "Home", path: "" },
@@ -425,6 +497,36 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
               </div>
             </Reveal>
           ))}
+        </div>
+      </Section>
+
+      <Section title={equipmentSupportTitle} description={equipmentSupportText}>
+        <div className="grid gap-4 md:grid-cols-2">
+          {equipmentSupportItems.map((item, index) => (
+            <Reveal key={item.name.en} delay={index * 70}>
+              <article className="flex h-full items-start gap-4 rounded-2xl border border-border/70 bg-card/70 p-5 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-xs font-semibold text-brand">
+                  {item.code}
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold text-foreground">
+                    {item.name[locale]}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-foreground/80">
+                    {item.description[locale]}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <div className="pt-7">
+          <Link
+            href={`/${locale}/equipment-rental`}
+            className="btn-secondary transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-0"
+          >
+            {equipmentSupportCta}
+          </Link>
         </div>
       </Section>
 

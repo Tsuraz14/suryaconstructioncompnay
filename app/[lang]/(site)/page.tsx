@@ -3,6 +3,7 @@ import Link from "next/link";
 import { type Lang } from "@/lib/i18n";
 import { services, projects } from "@/lib/content";
 import { CONTACT, SITE_NAME, SITE_URL, getAlternates } from "@/lib/site";
+import { getBlogsSorted, getLocalizedBlogDate } from "@/lib/blogs";
 import Section from "@/components/section";
 import Reveal from "@/components/motion/reveal";
 import JsonLd from "@/components/seo/jsonld";
@@ -156,6 +157,7 @@ export default async function HomePage({ params }: HomePageProps) {
     ...item,
     project: projects.find((project) => project.id === item.id)!,
   }));
+  const latestBlogs = getBlogsSorted().slice(0, 3);
 
   const statusLabels = {
     en: {
@@ -182,6 +184,56 @@ export default async function HomePage({ params }: HomePageProps) {
     locale === "np" ? "सबै सेवाहरू हेर्नुहोस्" : "Explore All Services";
   const viewAllProjectsLabel =
     locale === "np" ? "सबै परियोजनाहरू हेर्नुहोस्" : "View All Projects";
+  const insightsTitle =
+    locale === "np"
+      ? "नवीन निर्माण सम्बन्धी जानकारी"
+      : "Latest Construction Insights";
+  const insightsReadMore =
+    locale === "np" ? "थप पढ्नुहोस्" : "Read more";
+  const insightsViewAll =
+    locale === "np" ? "सबै लेख हेर्नुहोस्" : "View All Articles";
+  const equipmentSupportTitle =
+    locale === "np" ? "उपकरण भाडा सेवा" : "Equipment Rental Support";
+  const equipmentSupportText =
+    locale === "np"
+      ? "साइट कार्यान्वयन र परियोजना डेलिभरीलाई समर्थन गर्न हामीले चयनित निर्माण उपकरणहरू भाडामा पनि उपलब्ध गराउँछौं।"
+      : "We also provide selected construction equipment for rent to support site execution and project delivery.";
+  const equipmentSupportCta =
+    locale === "np" ? "उपकरण भाडा हेर्नुहोस्" : "Explore Equipment Rental";
+  const equipmentSupportItems = [
+    {
+      code: "EX",
+      name: { en: "Excavator", np: "एक्स्काभेटर" },
+      detail: {
+        en: "Excavation and heavy earthmoving support.",
+        np: "उत्खनन तथा भारी माटो सार्ने कामका लागि।",
+      },
+    },
+    {
+      code: "RC",
+      name: { en: "Roller Compactor", np: "रोलर कम्प्याक्टर" },
+      detail: {
+        en: "Reliable compaction for base and subgrade.",
+        np: "बेस र सबग्रेड कम्प्याक्सनका लागि भरपर्दो।",
+      },
+    },
+    {
+      code: "TP",
+      name: { en: "Tipper", np: "टिपर" },
+      detail: {
+        en: "Material haulage for active project sites.",
+        np: "सक्रिय परियोजना साइटका लागि सामग्री ढुवानी।",
+      },
+    },
+    {
+      code: "WT",
+      name: { en: "Water Tanker", np: "वाटर ट्यांकर" },
+      detail: {
+        en: "Water support for dust control and works.",
+        np: "धुलो नियन्त्रण र साइट कार्यका लागि पानी सहयोग।",
+      },
+    },
+  ] as const;
 
   const qualityHeading =
     locale === "np"
@@ -374,6 +426,34 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </Section>
 
+      <Section title={equipmentSupportTitle} description={equipmentSupportText}>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {equipmentSupportItems.map((item, index) => (
+            <Reveal key={item.name.en} delay={index * 70}>
+              <article className="h-full rounded-2xl border border-border/70 bg-card/70 p-5 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand/30 bg-brand/10 text-xs font-semibold text-brand">
+                  {item.code}
+                </span>
+                <h3 className="mt-4 text-base font-semibold text-foreground">
+                  {item.name[locale]}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+                  {item.detail[locale]}
+                </p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <div className="pt-8">
+          <Link
+            href={`/${locale}/equipment-rental`}
+            className="btn-secondary transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-0"
+          >
+            {equipmentSupportCta}
+          </Link>
+        </div>
+      </Section>
+
       <Section title={projectsTitle} description={projectsDescription}>
         <div className="relative group/carousel">
           <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-background via-background/70 to-transparent md:block" />
@@ -461,6 +541,59 @@ export default async function HomePage({ params }: HomePageProps) {
             className="btn-secondary transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-0"
           >
             {viewAllProjectsLabel}
+          </Link>
+        </div>
+      </Section>
+
+      <Section title={insightsTitle}>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {latestBlogs.map((blog, index) => (
+            <Reveal key={blog.slug} delay={index * 80}>
+              <article className="group h-full overflow-hidden rounded-2xl border border-border/70 bg-card/70 shadow-sm transition duration-300 ease-out motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg">
+                <Link
+                  href={`/${locale}/resources/${blog.slug}`}
+                  className="relative block h-48 w-full overflow-hidden"
+                >
+                  <Image
+                    src={blog.image}
+                    alt={blog.title[locale]}
+                    fill
+                    className="object-cover transition duration-500 motion-safe:group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                </Link>
+                <div className="space-y-3 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60">
+                    {getLocalizedBlogDate(blog.date, locale)}
+                  </p>
+                  <h3 className="text-base font-semibold leading-snug text-foreground">
+                    <Link href={`/${locale}/resources/${blog.slug}`}>
+                      {blog.title[locale]}
+                    </Link>
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {blog.excerpt[locale]}
+                  </p>
+                  <div className="pt-1">
+                    <Link
+                      href={`/${locale}/resources/${blog.slug}`}
+                      className="btn-secondary !rounded-lg px-4 py-2 text-sm"
+                    >
+                      {insightsReadMore}
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <div className="pt-8">
+          <Link
+            href={`/${locale}/resources`}
+            className="btn-secondary transition-all duration-200 hover:shadow-md motion-safe:hover:-translate-y-0.5 active:translate-y-0"
+          >
+            {insightsViewAll}
           </Link>
         </div>
       </Section>

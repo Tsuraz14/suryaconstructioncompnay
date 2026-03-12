@@ -41,6 +41,7 @@ const navItems = [
   { key: "home", href: "" },
   { key: "about", href: "/about" },
   { key: "services", href: "/services" },
+  { key: "equipmentRental", href: "/equipment-rental" },
   { key: "projects", href: "/projects" },
   { key: "contact", href: "/contact" },
 ] as const;
@@ -82,6 +83,41 @@ export default function Footer({ lang }: FooterProps) {
               </div>
             </Link>
 
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.facebook.com/suryaconstructioncompany"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit our Facebook page"
+                className="text-neutral-700 dark:text-neutral-300 transition duration-200 ease-out hover:text-brand hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-6 w-6"
+                  fill="currentColor"
+                >
+                  <path d="M13.5 8.5V6.7c0-.7.5-1.2 1.2-1.2H16V2.6h-2.2A3.6 3.6 0 0 0 10.2 6v2.5H8v2.9h2.2v8.1h3.3v-8.1h2.4l.4-2.9h-2.8Z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@suryaconstructioncompany"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit our TikTok profile"
+                className="text-neutral-700 dark:text-neutral-300 transition duration-200 ease-out hover:text-brand hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="h-6 w-6"
+                  fill="currentColor"
+                >
+                  <path d="M16.8 3c.3 1.6 1.2 2.7 2.9 2.8v2.3c-1.3 0-2.5-.4-3.5-1.1v6.2a5.2 5.2 0 1 1-5.2-5.2c.3 0 .7 0 1 .1v2.4a2.9 2.9 0 1 0 1.8 2.7V3h3Z" />
+                </svg>
+              </a>
+            </div>
+
             <div className="space-y-3">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-foreground/60">
                 {copy.trustHeading}
@@ -121,6 +157,12 @@ export default function Footer({ lang }: FooterProps) {
                   {labels.nav[item.key]}
                 </Link>
               ))}
+              <Link
+                href={buildHref("/resources")}
+                className="transition hover:text-foreground"
+              >
+                {lang === "np" ? "स्रोतहरू" : "Resources"}
+              </Link>
             </nav>
           </div>
 
